@@ -56,14 +56,15 @@ backend/*.txt
 !package.json
 !package-lock.json
 
-# Images & Binary reports (moved to archived_docs)
-*.png
-*.jpg
-*.jpeg
-*.pdf
-*.docx
+# Images & Binary reports (Commented out to allow tracking in root)
+# *.png
+# *.jpg
+# *.jpeg
+# *.pdf
+# *.docx
 !archived_docs/*.pdf
 !archived_docs/*.docx
+!flowchart_images/
 
 # Cache
 .pytest_cache/
