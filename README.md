@@ -1,10 +1,10 @@
 # 🧠 Offline AI Digital Brain
 
-> A **privacy-first**, **state-of-the-art** local AI ecosystem. Organize your knowledge, chat with specialized agents, and process visual data—all 100% offline.
+> A **privacy-first**, **fully local** AI ecosystem. Organize knowledge, collaborate with specialized agents, and process visual data—100% offline.
 
 <div align="center">
 
-![Project Status](https://img.shields.io/badge/Status-Production--Ready-success?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Production--Ready-success?style=for-the-badge)
 ![Ollama](https://img.shields.io/badge/AI_Engine-Ollama-black?style=for-the-badge&logo=ollama)
 ![React](https://img.shields.io/badge/Frontend-React_18-61DAFB?style=for-the-badge&logo=react)
 ![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi)
@@ -15,119 +15,111 @@
 
 ## ✨ Overview
 
-The **Offline AI Digital Brain** is a comprehensive, locally-hosted platform that transforms your personal hardware into a powerful AI workstation. It combines multi-agent intelligence, document RAG (Retrieval-Augmented Generation), and multimodal processing into a single, unified interface.
+The **Offline AI Digital Brain** is a locally-hosted AI workstation that combines multi-agent intelligence, document RAG (Retrieval-Augmented Generation), and multimodal processing. 
 
 ### 🛡️ Why Local?
-- **Zero Latency External dependecy** — No API keys, no internet required.
-- **Absolute Privacy** — Your documents, chats, and images never leave your disk.
-- **Eternal Ownership** — No subscription fees or "deprecating" models.
+- **Zero External Dependencies** — No API keys or internet required.
+- **Low Latency Inference** — Fast, local feedback for critical tasks.
+- **Absolute Privacy** — Your data never leaves your disk.
+- **Full Ownership** — No vendor lock-in or subscription fees.
+
+---
+
+## 📐 Architecture & Flow
+
+```mermaid
+graph TD
+    User((User)) <--> UI[React Frontend]
+    UI <--> API[FastAPI Backend]
+    
+    subgraph "Intelligence Layer"
+        API <--> Router{Agent Router}
+        Router <--> Agents[Multi-Agent System]
+    end
+    
+    subgraph "RAG Pipeline"
+        API <--> PDF[PDF/DOCX Processor]
+        PDF <--> Chroma[(ChromaDB / Vector Search)]
+        API <--> Ext[Browser Extension]
+    end
+    
+    subgraph "Inference Engines"
+        API <--> Ollama[Ollama / LLMs & VLM]
+        API <--> SD[Stable Diffusion API]
+    end
+```
 
 ---
 
 ## 🚀 Key Features
 
-### 🤖 Core Intelligence
-- **Multi-Agent Chat**: specialized agents for Research, Analysis, Synthesis, and Coding.
+### 📚 Semantic Knowledge Base
+- **Private RAG**: Semantic search across PDF, DOCX, and TXT using ChromaDB.
+- **VLM OCR**: Advanced OCR for handwritten/scanned docs using LLava 7B.
+- **Browser Capture**: Index web pages directly via the Chrome extension.
+
+### 🤖 Autonomous Intelligence
+- ** especializados Suite**: Agents for Research, Analysis, Synthesis, and Coding.
 - **Writing Assistant**: Local drafting, summarization, and tone shifting.
-- **Gamified Learning**: Generate quizzes and simulations directly from your own knowledge base.
+- **AI Simulations**: Generate interactive quizzes from your documents.
 
-### 📚 Knowledge & Documents
-- **Private RAG**: Semantic search across PDF, DOCX, and TXT files using ChromaDB.
-- **Multimedia Indexing**: Index web pages via the companion browser extension.
-- **Offline Translation**: Professional-grade translation across multiple languages.
-
-### 👁️ Multimodal & Creative
-- **VLM OCR**: Advanced OCR for handwritten and scanned docs using LLava 7B.
-- **Stable Diffusion**: Text-to-image generation and background removal.
-- **Web Creator**: Describe a website and watch it build in real-time.
+### 🎨 Creative & Utilities
+- **Image Suite**: Text-to-image (Stable Diffusion) and background removal.
+- **Web Creator**: Instant website generation from natural language.
+- **Local Translation**: Professional-grade offline translation service.
 
 ---
 
-## 📐 System Architecture
+## 🛠️ Setup & Requirements
 
-```mermaid
-graph TD
-    User((User)) <--> Frontend[React 18 / Vite]
-    Frontend <--> Backend[FastAPI / Python]
-    
-    subgraph "Local AI Engines"
-        Backend <--> Ollama[Ollama / LLMs & VLM]
-        Backend <--> SD[Stable Diffusion / Image Gen]
-        Backend <--> Models[On-Disk Models / PyTorch]
-    end
-    
-    subgraph "Storage"
-        Backend <--> ChromaDB[(ChromaDB / Vector Data)]
-        Backend <--> FileSystem[(Local Storage / Uploads)]
-    end
-```
+### 💻 System Requirements
+| Component | Minimum | Recommended |
+|---|---|---|
+| **GPU** | 8GB VRAM (NVIDIA) | 12GB+ VRAM (NVIDIA RTX 3060+) |
+| **RAM** | 16 GB | 32 GB |
+| **Storage** | 50GB Free (SSD) | 100GB+ Free (NVMe SSD) |
 
----
-
-## 📂 Project Structure
-
-Following a comprehensive cleanup, the workspace is now highly organized:
-
-```
-ai_brain-main/
-├── src/                # Modern React frontend (TypeScript)
-├── backend/            # FastAPI orchestration layer
-│   └── tests/          # Consolidated backend verification suite
-├── archived_docs/      # 📂 NEW: Project research, guides, and MD/PDF reports
-├── tests/              # 📂 NEW: Root-level utility and integration tests
-├── data/               # Persistent knowledge base storage
-├── browser-extension/  # Web capture tool for Chrome/Edge
-└── package.json        
-```
+### ⚡ Quick Start
+1. **Pull Models**:
+   `ollama pull tinyllama mistral llava nomic-embed-text`
+2. **Backend**:
+   ```bash
+   cd backend
+   python -m venv venv
+   .venv\Scripts\activate  # Windows
+   source venv/bin/activate  # Mac/Linux
+   pip install -r requirements.txt
+   python run.py
+   ```
+3. **Frontend**:
+   `npm install && npm run dev`
 
 ---
 
-## 🛠️ Quick Start
+## 📄 Documentation & Support
 
-### 1. Prerequisites
-- **Python 3.10+** & **Node.js 18+**
-- **Ollama**: [Download here](https://ollama.com)
-- **Required Models**:
-  ```bash
-  ollama pull tinyllama mistral llava nomic-embed-text
-  ```
+### 📁 Project Structure
+- `src/`: React frontend (TypeScript)
+- `backend/`: FastAPI orchestration & `backend/tests/`
+- `archived_docs/`: [Research Papers & Design Guides](file:///c:/Users/Amrutha/Desktop/ai_brain-main/archived_docs/)
+- `tests/`: Root-level integration utilities
 
-### 2. Startup Suite
-We recommend running the backend and frontend in separate terminals:
-
-**Terminal A: Backend**
-```bash
-cd backend
-python -m venv venv
-.venv\Scripts\activate  # Windows
-pip install -r requirements.txt
-python run.py
-```
-
-**Terminal B: Frontend**
-```bash
-npm install
-npm run dev
-```
+### ⚠️ Troubleshooting FAQ
+- **Connection Error?** Ensure `ollama serve` is running.
+- **Slow Performance?** Check if models are running on GPU or CPU.
+- **Memory Issues?** Close other VRAM-heavy apps or use smaller models (e.g., TinyLlama).
 
 ---
 
-## 📄 Documentation & Research
+## 🛡️ Privacy & Contributing
 
-The project includes extensive documentation on system architecture and AI performance:
-- Check `archived_docs/` for the **Offline_AI_Digital_Brain_Research_Paper.pdf**.
-- High-level design guides are also available in `archived_docs/`.
+### Privacy Commitments
+- **100% Local Inference**: No data is sent to external AI providers.
+- **Zero Telemetry**: We do not track usage or collect analytics.
+- **Local Encryption**: All session data stays in your local `data/` folder.
 
----
-
-## 🛡️ Privacy Guarantee
-
-| Commitment | Status |
-|---|---|
-| No cloud inference | ✅ |
-| No data collection | ✅ |
-| No telemetry | ✅ |
-| No external auth | ✅ |
+### Contributing
+We welcome local AI enthusiasts! Fork the repo, create a feature branch, and submit a PR. Please ensure all code passes the tests in the `tests/` folder.
 
 ---
 
